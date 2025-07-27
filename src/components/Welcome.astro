@@ -1,45 +1,36 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
+import glitterboxLogo from '../assets/glitterbox_combined_transparent.png';
+
 ---
 
 <div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
+	<div id="background"></div>
 	<main>
 		<section id="hero">
-			<a href="https://astro.build"
-				><img src={astroLogo.src} width="115" height="48" alt="Astro Homepage" /></a
-			>
-			<h1>
-				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
-			</h1>
+			<div class="logo">
+				<img src={glitterboxLogo.src} alt="SpaceCat's Glitterbox" class="logo-image" />
+				<p class="tagline">Games & Tech Demos</p>
+			</div>
+			<div class="description">
+				<p>Welcome to my digital playground where I showcase interactive games, tech experiments, and creative coding projects.</p>
+			</div>
 			<section id="links">
-				<a class="button" href="/forest">Play Forest Game</a>
-				<a class="button" href="https://docs.astro.build">Read our docs</a>
-				<a href="https://astro.build/chat"
-					>Join our Discord <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"
-						><path
-							fill="currentColor"
-							d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"
-						></path></svg
-					>
-				</a>
+				<a class="button primary" href="/forest">🌲 Forest Game</a>
+				<a class="button secondary" href="https://spacecat.org">🚀 Spacecat.org</a>
+				<a class="button secondary" href="https://github.com" target="_blank">📦 GitHub</a>
 			</section>
 		</section>
 	</main>
 
-	<a href="https://astro.build/blog/astro-5/" id="news" class="box">
-		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
-			><path
-				d="M24.667 12c1.333 1.414 2 3.192 2 5.334 0 4.62-4.934 5.7-7.334 12C18.444 28.567 18 27.456 18 26c0-4.642 6.667-7.053 6.667-14Zm-5.334-5.333c1.6 1.65 2.4 3.43 2.4 5.333 0 6.602-8.06 7.59-6.4 17.334C13.111 27.787 12 25.564 12 22.666c0-4.434 7.333-8 7.333-16Zm-6-5.333C15.111 3.555 16 5.556 16 7.333c0 8.333-11.333 10.962-5.333 22-3.488-.774-6-4-6-8 0-8.667 8.666-10 8.666-20Z"
-				fill="#111827"></path></svg
-		>
-		<h2>What's New in Astro 5.0?</h2>
-		<p>
-			From content layers to server islands, click to learn more about the new features and
-			improvements in Astro 5.0
-		</p>
-	</a>
+	<div id="news" class="box">
+		<div class="news-content">
+			<h2>🎮 Latest Projects</h2>
+			<p>
+				Explore interactive demos and games built with modern web technologies. 
+				More projects coming soon!
+			</p>
+		</div>
+	</div>
 </div>
 
 <style>
@@ -50,162 +41,204 @@ import background from '../assets/background.svg';
 		width: 100%;
 		height: 100%;
 		z-index: -1;
-		filter: blur(100px);
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		opacity: 0.1;
 	}
 
 	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
+		font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		height: 100vh;
+		background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+		color: white;
+		position: relative;
+		overflow: hidden;
+	}
+
+	#container::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: 
+			radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+			radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+			radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+		z-index: 0;
 	}
 
 	main {
 		height: 100%;
 		display: flex;
 		justify-content: center;
+		align-items: center;
+		position: relative;
+		z-index: 1;
 	}
 
 	#hero {
 		display: flex;
-		align-items: start;
+		align-items: center;
 		flex-direction: column;
 		justify-content: center;
 		padding: 16px;
+		text-align: center;
+		max-width: 600px;
 	}
 
-	h1 {
-		font-size: 22px;
-		margin-top: 0.25em;
+	.logo {
+		margin-bottom: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.logo-image {
+		max-width: 300px;
+		height: auto;
+		margin-bottom: 1rem;
+		filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+		transition: all 0.3s ease;
+	}
+
+	.logo-image:hover {
+		filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
+		transform: scale(1.05);
+	}
+
+	.tagline {
+		font-size: 1.5rem;
+		margin: 0.5rem 0 0 0;
+		color: #a8b2d1;
+		font-weight: 300;
+		letter-spacing: 0.1em;
+	}
+
+	.description {
+		margin-bottom: 3rem;
+	}
+
+	.description p {
+		font-size: 1.2rem;
+		line-height: 1.6;
+		color: #cbd5e1;
+		margin: 0;
+		max-width: 500px;
 	}
 
 	#links {
 		display: flex;
-		gap: 16px;
+		gap: 1rem;
+		flex-wrap: wrap;
+		justify-content: center;
 	}
 
 	#links a {
 		display: flex;
 		align-items: center;
-		padding: 10px 12px;
-		color: #111827;
+		padding: 1rem 1.5rem;
 		text-decoration: none;
-		transition: color 0.2s;
+		border-radius: 12px;
+		font-weight: 600;
+		font-size: 1rem;
+		transition: all 0.3s ease;
+		backdrop-filter: blur(10px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
-	#links a:hover {
-		color: rgb(78, 80, 86);
-	}
-
-	#links a svg {
-		height: 1em;
-		margin-left: 8px;
-	}
-
-	#links a.button {
+	#links a.primary {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-		border-radius: 10px;
+		box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
 	}
 
-	#links a.button:hover {
-		color: rgb(230, 230, 230);
-		box-shadow: none;
+	#links a.primary:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
 	}
 
-	pre {
-		font-family:
-			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
-			monospace;
-		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		margin: 0;
+	#links a.secondary {
+		background: rgba(255, 255, 255, 0.1);
+		color: #e2e8f0;
+		border: 1px solid rgba(255, 255, 255, 0.2);
 	}
 
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
-	}
-
-	p {
-		color: #4b5563;
-		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
-		margin: 0;
-	}
-
-	code {
-		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
+	#links a.secondary:hover {
+		background: rgba(255, 255, 255, 0.15);
+		transform: translateY(-1px);
 	}
 
 	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
-	}
-
-	#news {
 		position: absolute;
-		bottom: 16px;
-		right: 16px;
+		bottom: 2rem;
+		right: 2rem;
 		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
+		backdrop-filter: blur(20px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 16px;
+		background: rgba(255, 255, 255, 0.05);
+		transition: all 0.3s ease;
 	}
 
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
+	.box:hover {
+		background: rgba(255, 255, 255, 0.1);
+		transform: translateY(-2px);
 	}
 
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
-		}
+	.news-content {
+		padding: 1.5rem;
+	}
+
+	.news-content h2 {
+		margin: 0 0 0.5rem 0;
+		font-size: 1.2rem;
+		font-weight: 600;
+		color: #e2e8f0;
+	}
+
+	.news-content p {
+		margin: 0;
+		color: #a8b2d1;
+		font-size: 0.9rem;
+		line-height: 1.5;
 	}
 
 	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
+		.logo-image {
+			max-width: 250px;
 		}
 
-		#hero {
-			display: block;
-			padding-top: 10%;
+		.tagline {
+			font-size: 1.2rem;
+		}
+
+		.description p {
+			font-size: 1rem;
 		}
 
 		#links {
-			flex-wrap: wrap;
+			flex-direction: column;
+			align-items: center;
 		}
 
-		#links a.button {
-			padding: 14px 18px;
+		#links a {
+			width: 200px;
+			justify-content: center;
 		}
 
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
+		.box {
+			position: relative;
+			bottom: auto;
+			right: auto;
+			margin: 2rem auto 0;
+			max-width: 90%;
 		}
+	}
 
-		h1 {
-			line-height: 1.5;
+	@media screen and (max-height: 600px) {
+		.box {
+			display: none;
 		}
 	}
 </style>
