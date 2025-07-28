@@ -1,14 +1,17 @@
 ---
 import glitterboxLogo from '../assets/glitterbox_combined_transparent.png';
-
+import spacecatLogo from '../assets/spacecat_logo_glitterbox_style_transparent.png';
 ---
 
 <div id="container">
 	<div id="background"></div>
 	<main>
 		<section id="hero">
+			<div class="brand-header">
+				<img src={spacecatLogo.src} alt="SpaceCat" class="brand-logo" />
+			</div>
 			<div class="logo">
-				<img src={glitterboxLogo.src} alt="SpaceCat's Glitterbox" class="logo-image" />
+				<img src={glitterboxLogo.src} alt="Glitterbox" class="logo-image" />
 				<p class="tagline">Games & Tech Demos</p>
 			</div>
 			<div class="description">
@@ -75,6 +78,29 @@ import glitterboxLogo from '../assets/glitterbox_combined_transparent.png';
 		align-items: center;
 		position: relative;
 		z-index: 1;
+		flex-direction: column;
+	}
+
+	.brand-header {
+		position: absolute;
+		top: 2rem;
+		left: 2rem;
+		z-index: 2;
+	}
+
+	.brand-logo {
+		max-width: 120px;
+		height: auto;
+		filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+		transition: all 0.3s ease;
+		opacity: 0.9;
+		mix-blend-mode: screen;
+	}
+
+	.brand-logo:hover {
+		opacity: 1;
+		filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
+		transform: scale(1.05);
 	}
 
 	#hero {
@@ -205,6 +231,17 @@ import glitterboxLogo from '../assets/glitterbox_combined_transparent.png';
 	}
 
 	@media screen and (max-width: 768px) {
+		.brand-header {
+			position: relative;
+			top: auto;
+			left: auto;
+			margin-bottom: 1rem;
+		}
+
+		.brand-logo {
+			max-width: 80px;
+		}
+
 		.logo-image {
 			max-width: 250px;
 		}
