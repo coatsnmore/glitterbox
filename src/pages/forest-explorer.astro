@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <div id="game-container">
+    <iframe
+      src="/forest-explorer/index.html"
+      width="100%"
+      height="100%"
+      frameborder="0"
+      style="border: none;"
+    ></iframe>
+  </div>
+</Layout>
+
+<style>
+  #game-container {
+    width: 100%;
+    height: 100vh;
+    background: #000;
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>

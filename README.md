@@ -4,9 +4,10 @@ A modern portfolio website showcasing interactive games, tech demos, and creativ
 
 ## 🎮 Live Demos
 
-- **🌲 Forest Game** - Interactive forest exploration game
-- **🚀 Space Game** - Space shooter adventure
-- **More coming soon!**
+ - **🌲 Forest Game** - Interactive forest exploration game
+ - **🌳 Forest Explorer** - First-person trailblazing adventure
+ - **🚀 Space Game** - Space shooter adventure
+ - **More coming soon!**
 
 ## 🏗️ Tech Stack
 
@@ -47,6 +48,7 @@ npm run dev
 /
 ├── public/
 │   ├── forest/          # Forest game assets
+│   ├── forest-explorer/ # Forest explorer game assets
 │   ├── space/           # Space game assets
 │   └── favicon.png      # SpaceCat brand favicon
 ├── src/
@@ -58,9 +60,10 @@ npm run dev
 │   ├── layouts/
 │   │   └── Layout.astro     # Base layout template
 │   └── pages/
-│       ├── index.astro      # Home page
-│       ├── forest.astro     # Forest game page
-│       └── space.astro      # Space game page
+│       ├── index.astro          # Home page
+│       ├── forest.astro         # Forest game page
+│       ├── forest-explorer.astro # Forest explorer game page
+│       └── space.astro          # Space game page
 └── package.json
 ```
 
