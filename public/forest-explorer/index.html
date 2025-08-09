@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Forest Explorer</title>
+  <style>
+    body { margin:0; overflow:hidden; }
+    canvas { display:block; }
+    #instructions {
+      position:absolute;
+      top:0; left:0; right:0; bottom:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-family:sans-serif;
+      background:rgba(0,0,0,0.5);
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+<div id="instructions">Click to explore the forest<br/>WASD to move</div>
+<script type="module">
+import * as THREE from 'https://unpkg.com/three@0.152.2/build/three.module.js';
+import { PointerLockControls } from 'https://unpkg.com/three@0.152.2/examples/jsm/controls/PointerLockControls.js';
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// sky
+const skyGeo = new THREE.SphereGeometry(500,32,32);
+const skyMat = new THREE.MeshBasicMaterial({color:0x87ceeb, side:THREE.BackSide});
+const sky = new THREE.Mesh(skyGeo, skyMat);
+scene.add(sky);
+
+// clouds
+const cloudTex = new THREE.CanvasTexture(generateCloud());
+const cloudMat = new THREE.SpriteMaterial({map:cloudTex, transparent:true, opacity:0.8});
+const clouds=[];
+for(let i=0;i<20;i++){
+  const sprite = new THREE.Sprite(cloudMat);
+  sprite.position.set((Math.random()-0.5)*400, 60+Math.random()*20, (Math.random()-0.5)*400);
+  const scale = 20+Math.random()*40;
+  sprite.scale.set(scale, scale, 1);
+  clouds.push(sprite);
+  scene.add(sprite);
+}
+
+// light
+const sun = new THREE.DirectionalLight(0xffffff,1);
+sun.position.set(100,100,50);
+scene.add(sun);
+scene.add(new THREE.HemisphereLight(0xffffbb,0x080820,0.4));
+
+// ground
+const groundGeo = new THREE.PlaneGeometry(1000,1000);
+const groundMat = new THREE.MeshLambertMaterial({color:0x228b22});
+const ground = new THREE.Mesh(groundGeo, groundMat);
+ground.rotation.x = -Math.PI/2;
+scene.add(ground);
+
+// trees
+for(let i=0;i<100;i++){
+  const x = (Math.random()-0.5)*800;
+  const z = (Math.random()-0.5)*800;
+  createTree(x,z);
+}
+
+// shrubs
+for(let i=0;i<200;i++){
+  const x = (Math.random()-0.5)*800;
+  const z = (Math.random()-0.5)*800;
+  createShrub(x,z);
+}
+
+// birds
+const birds=[];
+for(let i=0;i<8;i++){
+  const bird = createBird();
+  birds.push(bird);
+  scene.add(bird);
+}
+
+// controls
+const controls = new PointerLockControls(camera, document.body);
+camera.position.y = 1.7;
+const instructions = document.getElementById('instructions');
+instructions.addEventListener('click', () => {
+  controls.lock();
+});
+controls.addEventListener('lock', () => instructions.style.display='none');
+controls.addEventListener('unlock', () => instructions.style.display='flex');
+
+const move = {forward:false,back:false,left:false,right:false};
+const velocity = new THREE.Vector3();
+const direction = new THREE.Vector3();
+const clock = new THREE.Clock();
+document.addEventListener('keydown', e=>{
+  switch(e.code){
+    case 'KeyW': move.forward=true; break;
+    case 'KeyS': move.back=true; break;
+    case 'KeyA': move.left=true; break;
+    case 'KeyD': move.right=true; break;
+  }
+});
+document.addEventListener('keyup', e=>{
+  switch(e.code){
+    case 'KeyW': move.forward=false; break;
+    case 'KeyS': move.back=false; break;
+    case 'KeyA': move.left=false; break;
+    case 'KeyD': move.right=false; break;
+  }
+});
+
+// trail
+const trailGroup = new THREE.Group();
+scene.add(trailGroup);
+let lastTrail = new THREE.Vector3();
+
+function animate(){
+  requestAnimationFrame(animate);
+  const delta = clock.getDelta();
+
+  if(controls.isLocked){
+    velocity.x -= velocity.x*10.0*delta;
+    velocity.z -= velocity.z*10.0*delta;
+
+    direction.z = Number(move.forward) - Number(move.back);
+    direction.x = Number(move.right) - Number(move.left);
+    direction.normalize();
+
+    const speed = 10.0;
+    if(move.forward || move.back) velocity.z -= direction.z * speed * delta;
+    if(move.left || move.right) velocity.x -= direction.x * speed * delta;
+
+    controls.moveRight(-velocity.x*delta);
+    controls.moveForward(-velocity.z*delta);
+
+    const pos = controls.getObject().position;
+    if (pos.distanceTo(lastTrail) > 1) {
+      addTrail(pos);
+      lastTrail.copy(pos);
+    }
+  }
+
+  clouds.forEach(c=> c.position.x += 0.02);
+
+  birds.forEach(b => {
+     b.userData.angle += delta * b.userData.speed;
+     b.position.x = Math.cos(b.userData.angle) * b.userData.radius;
+     b.position.z = Math.sin(b.userData.angle) * b.userData.radius;
+  });
+
+  renderer.render(scene,camera);
+}
+animate();
+
+function addTrail(position){
+  const geo = new THREE.PlaneGeometry(1,1);
+  const mat = new THREE.MeshBasicMaterial({color:0x8b4513, side:THREE.DoubleSide});
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.rotation.x = -Math.PI/2;
+  mesh.position.set(position.x, 0.01, position.z);
+  trailGroup.add(mesh);
+}
+
+function createTree(x,z){
+  const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.5,0.5,8,8), new THREE.MeshLambertMaterial({color:0x8b4513}));
+  trunk.position.set(x,4,z);
+  scene.add(trunk);
+  const foliage = new THREE.Mesh(new THREE.ConeGeometry(3,8,8), new THREE.MeshLambertMaterial({color:0x006400}));
+  foliage.position.set(x,8,z);
+  scene.add(foliage);
+}
+
+function createShrub(x,z){
+  const map = new THREE.CanvasTexture(generateShrub());
+  const mat = new THREE.SpriteMaterial({map:map});
+  const sprite = new THREE.Sprite(mat);
+  sprite.position.set(x,0.5,z);
+  sprite.scale.set(3,3,1);
+  scene.add(sprite);
+}
+
+function generateShrub(){
+  const size=64;
+  const canvas=document.createElement('canvas');
+  canvas.width=canvas.height=size;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#228b22';
+  ctx.beginPath();
+  ctx.arc(size/2,size/2,size/2,0,Math.PI*2);
+  ctx.fill();
+  return canvas;
+}
+
+function generateCloud(){
+  const size=128;
+  const canvas=document.createElement('canvas');
+  canvas.width=canvas.height=size;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='white';
+  ctx.beginPath();
+  ctx.ellipse(size/2,size/2,size/2,size/3,0,0,Math.PI*2);
+  ctx.fill();
+  return canvas;
+}
+
+function createBird(){
+  const geo = new THREE.ConeGeometry(0.3,1,3);
+  const mat = new THREE.MeshBasicMaterial({color:0xffffff});
+  const bird = new THREE.Mesh(geo, mat);
+  bird.position.y = 20 + Math.random()*10;
+  bird.userData = {
+     angle: Math.random()*Math.PI*2,
+     radius: 50 + Math.random()*50,
+     speed: 0.5 + Math.random()
+  };
+  return bird;
+}
+
+window.addEventListener('resize', onWindowResize);
+function onWindowResize(){
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+</script>
+</body>
+</html>
