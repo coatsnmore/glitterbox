@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Cat Fashion Show</title>
+    <style>
+      body { 
+        margin: 0; 
+        overflow: hidden; /* Prevent scrolling */
+      }
+      canvas { 
+        display: block; 
+        touch-action: none; /* Better touch handling */
+      }
+      #ui-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: white;
+        font-family: Arial, sans-serif;
+        width: calc(100% - 40px); /* Responsive width */
+        max-width: 500px;
+        z-index: 100;
+      }
+      .outfit-button {
+        padding: 12px;
+        margin: 5px;
+        cursor: pointer;
+        background: #ff69b4;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        transition: transform 0.2s;
+        font-size: clamp(14px, 3vw, 16px); /* Responsive font size */
+        width: calc(50% - 10px); /* Two buttons per row on mobile */
+        min-width: 120px;
+      }
+      #outfit-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+      .cat-info {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: clamp(14px, 3vw, 16px);
+      }
+      h3 {
+        color: #ff69b4;
+        margin-top: 20px;
+        text-align: center;
+        font-size: clamp(18px, 4vw, 24px);
+      }
+      #splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #ff69b4, #9400D3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        color: white;
+        font-family: 'Arial', sans-serif;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      #splash-screen h1 {
+        font-size: clamp(32px, 6vw, 48px);
+        margin-bottom: 30px;
+        text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+        animation: bounce 1s infinite;
+        text-align: center;
+      }
+      #start-button {
+        padding: clamp(12px, 3vw, 15px) clamp(20px, 5vw, 30px);
+        font-size: clamp(18px, 4vw, 24px);
+        background: #ff69b4;
+        border: none;
+        border-radius: 25px;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
+      #start-button:hover {
+        transform: scale(1.1);
+      }
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      #party-marquee {
+        position: fixed;
+        top: 20px;
+        left: 0;
+        width: 100%;
+        color: #FF69B4;
+        font-size: clamp(32px, 6vw, 48px);
+        padding: 0 20px;
+        box-sizing: border-box;
+      }
+      @keyframes marquee-pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+      }
+      #party-names {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+        pointer-events: none;
+      }
+      .cat-names {
+        font-size: clamp(16px, 3vw, 24px);
+        padding: 15px;
+        display: inline-block;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 15px;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+      
+      /* Media queries for different screen sizes */
+      @media (max-width: 480px) {
+        #ui-container {
+          top: 10px;
+          left: 10px;
+          width: calc(100% - 20px);
+        }
+        
+        .outfit-button {
+          width: calc(100% - 10px);
+        }
+      }
+      
+      /* Landscape mode adjustments */
+      @media (max-height: 480px) and (orientation: landscape) {
+        #ui-container {
+          max-height: 80vh;
+          overflow-y: auto;
+        }
+        
+        .cat-info {
+          margin-bottom: 10px;
+          padding: 10px;
+        }
+        
+        #party-marquee {
+          font-size: clamp(24px, 4vw, 32px);
+        }
+      }
+
+      @media (max-width: 768px) {
+        #ui-container {
+          top: 10px;
+          left: 10px;
+          width: calc(100% - 20px);
+          max-height: 50vh; /* Limit height on mobile */
+          overflow-y: auto; /* Allow scrolling if needed */
+        }
+        
+        .cat-info {
+          margin-bottom: 10px;
+          padding: 10px;
+        }
+        
+        #outfit-buttons {
+          margin-bottom: 20px; /* Add space below buttons */
+        }
+      }
+
+      /* Update party mode positioning for mobile */
+      @media (max-width: 768px) {
+        #party-marquee {
+          top: 10px;
+          font-size: clamp(24px, 5vw, 32px);
+          text-shadow: 
+            2px 2px 0 #000,
+            -2px -2px 0 #000,
+            2px -2px 0 #000,
+            -2px 2px 0 #000;
+        }
+        
+        #party-names {
+          top: 40%;
+          background: rgba(0, 0, 0, 0.5);
+          margin: 0;
+          padding: 10px;
+        }
+        
+        .cat-names {
+          font-size: clamp(14px, 3vw, 20px);
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+          white-space: normal;
+          max-width: 90%;
+        }
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-CDtNv4uN.js"></script>
+  </head>
+  <body>
+    <div id="splash-screen">
+      <h1>My Best Friend Party!!!</h1>
+      <button id="start-button">Start Game!</button>
+    </div>
+    <div id="ui-container">
+      <div id="cat-info" class="cat-info"></div>
+      <div id="outfit-buttons"></div>
+    </div>
+    <div id="party-marquee">My Best Friend Party!!!</div>
+    <div id="party-names"></div>
+  </body>
+</html>
