@@ -1,0 +1,272 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+	<div class="cv-container">
+		<header class="cv-header">
+			<div class="profile-section">
+				<div class="profile-info">
+					<h1>👨‍💻 Nicholas Coats</h1>
+					<p class="title">Software Engineer</p>
+					<p class="location">📍 Columbus, OH United States</p>
+				</div>
+				<div class="contact-info">
+					<p>🔗 https://www.linkedin.com/in/nicholas-coats/</p>
+					<p>🐙 github.com/coatsnmore</p>
+				</div>
+			</div>
+		</header>
+
+		<main class="cv-main">
+			<section class="cv-section">
+				<h2>🎯 Professional Summary</h2>
+				<p>A passionate yet professional programmer with a penchant for producing "pretty good" products perpetually.</p>
+			</section>
+
+			<section class="cv-section">
+				<h2>💼 Work Experience</h2>
+				<div class="experience-item">
+					<h3>Sr Consultant, Software Engineering</h3>
+					<p class="company">Nationwide Insurance (Fortune 100) • 2008 - Current</p>
+					<ul>
+						<li>Software Engineering</li>
+						<li>DevSecOps, Cloud, AI</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="cv-section">
+				<h2>🛠️ Technical Skills</h2>
+				<div class="skills-grid">
+					<div class="skill-category">
+						<h3>Programming Languages</h3>
+						<p>JavaScript, TypeScript, Python, HTML/CSS, Java</p>
+					</div>
+					<div class="skill-category">
+						<h3>Frameworks & Libraries</h3>
+						<p>React, Astro, Node.js, Express, Spring Boot, Strands</p>
+					</div>
+					<div class="skill-category">
+						<h3>Game Development</h3>
+						<p>Canvas API, WebGL, Phaser, Unity</p>
+					</div>
+					<div class="skill-category">
+						<h3>Tools & Platforms</h3>
+						<p>Git, VS Code, Docker, AWS</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="cv-section">
+				<h2>🎓 Education</h2>
+				<div class="education-item">
+					<h3>Bachelor's Degree</h3>
+					<p class="institution">The Ohio State University • 2003 - 2008</p>
+					<p>Studied at one of the top public universities in the United States</p>
+				</div>
+			</section>
+
+			<section class="cv-section">
+				<h2>🚀 Projects</h2>
+				<div class="project-item">
+					<h3>Glitterbox - Game Collection</h3>
+					<p>A collection of interactive games and tech demos showcasing various web technologies and creative coding techniques.</p>
+				</div>
+				<div class="project-item">
+					<h3>Wellness Tracker</h3>
+					<p>Progressive Web App for tracking personal wellness metrics with offline capabilities.</p>
+				</div>
+				<div class="project-item">
+					<h3>Space Shooter Game</h3>
+					<p>Browser-based space shooter game built with TypeScript and Canvas API.</p>
+				</div>
+			</section>
+
+			<section class="cv-section">
+				<h2>🏆 Certifications & Training</h2>
+				<div class="certification-item">
+					<h3>LinkedIn Learning Certifications</h3>
+					<ul>
+						<li>Leading through Relationships (Oct 2020)</li>
+						<li>The Six Biases of Decision-Making (Oct 2020)</li>
+						<li>Building Creative Organizations (Sep 2020)</li>
+						<li>Programming Foundations: Algorithms (Aug 2020)</li>
+						<li>Persuading Others (Jun 2020)</li>
+						<li>Leading with Stories (Apr 2020)</li>
+						<li>Programming Foundations: APIs and Web Services (Apr 2020)</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="cv-section">
+				<h2>🌱 Interests & Activities</h2>
+				<p>Music, Videogames, TTRPG, Nature, Science, Politics, Science Fiction, Cooking</p>
+			</section>
+		</main>
+
+		<footer class="cv-footer">
+			<a href="/" class="back-button">← Back to Glitterbox</a>
+		</footer>
+	</div>
+</Layout>
+
+<style>
+	.cv-container {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 20px;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+		line-height: 1.6;
+		color: #333;
+	}
+
+	.cv-header {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		color: white;
+		padding: 40px;
+		border-radius: 12px;
+		margin-bottom: 30px;
+		box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+	}
+
+	.profile-section {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+
+	.profile-info h1 {
+		margin: 0 0 10px 0;
+		font-size: 2.5rem;
+		font-weight: 700;
+	}
+
+	.title {
+		font-size: 1.3rem;
+		margin: 0 0 8px 0;
+		opacity: 0.9;
+	}
+
+	.location {
+		margin: 0;
+		opacity: 0.8;
+	}
+
+	.contact-info p {
+		margin: 8px 0;
+		opacity: 0.9;
+	}
+
+	.cv-section {
+		background: white;
+		padding: 30px;
+		margin-bottom: 25px;
+		border-radius: 8px;
+		box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+		border-left: 4px solid #667eea;
+	}
+
+	.cv-section h2 {
+		color: #667eea;
+		margin: 0 0 20px 0;
+		font-size: 1.5rem;
+		font-weight: 600;
+	}
+
+	.experience-item, .education-item, .project-item, .certification-item {
+		margin-bottom: 25px;
+		padding-bottom: 20px;
+		border-bottom: 1px solid #eee;
+	}
+
+	.experience-item:last-child, .education-item:last-child, .project-item:last-child, .certification-item:last-child {
+		border-bottom: none;
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+
+	.experience-item h3, .education-item h3, .project-item h3, .certification-item h3 {
+		color: #333;
+		margin: 0 0 8px 0;
+		font-size: 1.2rem;
+		font-weight: 600;
+	}
+
+	.company, .institution {
+		color: #667eea;
+		font-weight: 500;
+		margin: 0 0 12px 0;
+	}
+
+	.experience-item ul {
+		margin: 12px 0 0 0;
+		padding-left: 20px;
+	}
+
+	.experience-item li {
+		margin-bottom: 6px;
+	}
+
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 20px;
+	}
+
+	.skill-category h3 {
+		color: #667eea;
+		margin: 0 0 10px 0;
+		font-size: 1.1rem;
+		font-weight: 600;
+	}
+
+	.skill-category p {
+		margin: 0;
+		color: #666;
+	}
+
+	.cv-footer {
+		text-align: center;
+		margin-top: 40px;
+		padding: 20px;
+	}
+
+	.back-button {
+		display: inline-block;
+		padding: 12px 24px;
+		background: #667eea;
+		color: white;
+		text-decoration: none;
+		border-radius: 6px;
+		transition: background 0.3s ease;
+	}
+
+	.back-button:hover {
+		background: #5a6fd8;
+	}
+
+	@media (max-width: 768px) {
+		.profile-section {
+			flex-direction: column;
+		}
+		
+		.contact-info {
+			margin-top: 20px;
+		}
+		
+		.skills-grid {
+			grid-template-columns: 1fr;
+		}
+		
+		.cv-container {
+			padding: 15px;
+		}
+		
+		.cv-header {
+			padding: 30px 20px;
+		}
+	}
+</style>
