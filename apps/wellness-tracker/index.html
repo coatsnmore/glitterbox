@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4CAF50">
+    <title>Daily Wellness Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
+    <!-- <link rel="icon" type="image/png" href="icons/icon-192x192.png"> -->
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1>Daily Wellness Trackarrr</h1>
+            <nav>
+                <button data-view="goals" class="active">Goals</button>
+                <button data-view="notes">Notes</button>
+                <button data-view="food">Food Log</button>
+            </nav>
+        </header>
+
+        <main>
+            <section id="goals" class="view active">
+                <h2>Daily Goals</h2>
+                <form id="goal-form">
+                    <input type="text" id="new-goal" placeholder="Add a new goal">
+                    <button type="submit">Add</button>
+                </form>
+                <ul id="goals-list"></ul>
+            </section>
+
+            <section id="notes" class="view">
+                <h2>Daily Notes</h2>
+                <form id="note-form">
+                    <textarea id="note-content" placeholder="Write your thoughts..."></textarea>
+                    <button type="submit">Save</button>
+                </form>
+                <div id="notes-list"></div>
+            </section>
+
+            <section id="food" class="view">
+                <h2>Food Log</h2>
+                <form id="food-form">
+                    <input type="text" id="food-item" placeholder="What did you eat?">
+                    <input type="time" id="food-time">
+                    <button type="submit">Log</button>
+                </form>
+                <ul id="food-list"></ul>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html> 
