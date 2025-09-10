@@ -66,6 +66,9 @@ function collision(pos) {
 }
 
 window.addEventListener('keydown', (e) => {
+  if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+    e.preventDefault();
+  }
   switch (e.key) {
     case 'ArrowUp':
       if (direction.y === 1) break;
