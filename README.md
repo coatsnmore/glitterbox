@@ -8,6 +8,7 @@ A modern portfolio website showcasing interactive games, tech demos, and creativ
 - **🚀 Space Game** - Space shooter adventure with physics and audio
 - **🎉 Best Friend Party** - Interactive party game with cat characters
 - **🧟 Vampire Survivors Clone** - Action survival game with canvas rendering
+- **🐍 Snake Game** - Classic grid-based snake game
 - **🌿 Survival Game** - 3D survival experience built with Three.js
 - **📱 Wellness Tracker** - Progressive Web App for daily wellness and journaling
 
@@ -66,6 +67,7 @@ glitterbox/
 │   ├── best-friend-party/    # Built game assets
 │   ├── forest/               # Forest game assets
 │   ├── space/                # Space game assets
+│   ├── snake/                # Snake game assets
 │   ├── survival/             # Survival game assets
 │   ├── vampire/              # Vampire game assets
 │   ├── wellness/             # Wellness app assets
@@ -83,6 +85,7 @@ glitterbox/
 │       ├── about.astro       # About page
 │       ├── forest.astro      # Forest game page
 │       ├── space.astro       # Space game page
+│       ├── snake.astro       # Snake game page
 │       ├── best-friend-party.astro  # Party game page
 │       ├── survival.astro    # Survival game page
 │       ├── vampire.astro     # Vampire game page
@@ -111,6 +114,11 @@ glitterbox/
 - **Type**: Action survival
 - **Tech**: Canvas API, vanilla JavaScript
 - **Features**: Real-time combat, enemy spawning
+
+### 🐍 Snake Game
+- **Type**: Classic arcade snake
+- **Tech**: Canvas API, vanilla JavaScript
+- **Features**: Simple grid-based movement and food collection
 
 ### 🌿 Survival Game
 - **Type**: 3D survival experience
