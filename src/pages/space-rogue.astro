@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <div id="game-container">
+    <iframe
+      src="/space-rogue/roguelike.html"
+      width="100%"
+      height="100%"
+      frameborder="0"
+      style="border: none;"
+      title="Roguelike Space Invaders"
+    ></iframe>
+  </div>
+</Layout>
+
+<style>
+  #game-container {
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at top, #030712, #02050a 60%, #000 100%);
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>

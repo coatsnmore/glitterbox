@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Roguelike Space Invaders</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="hud">
+        <div class="stat" id="level-label">Level 1</div>
+        <div class="stat" id="lives-label">Lives: 3</div>
+        <div class="stat" id="shield-label">Shield: 0</div>
+        <div class="stat" id="power-label">Power: 1x</div>
+      </header>
+      <canvas id="game" width="900" height="640"></canvas>
+      <section class="controls">
+        <p>
+          Move with <kbd>←</kbd>/<kbd>→</kbd> or <kbd>A</kbd>/<kbd>D</kbd>. Hold
+          <kbd>Space</kbd> to fire.
+        </p>
+        <p>
+          Clear each wave to automatically earn an upgrade. Enemies become
+          faster, tankier, and more aggressive every level.
+        </p>
+      </section>
+      <div id="upgrade-notice" class="hidden">
+        <h2 id="upgrade-title"></h2>
+        <p id="upgrade-description"></p>
+      </div>
+      <div id="game-over" class="hidden">
+        <h1>Game Over</h1>
+        <p id="final-level"></p>
+        <button id="restart">Restart Run</button>
+      </div>
+    </main>
+    <script src="./game.js" type="module"></script>
+  </body>
+</html>
