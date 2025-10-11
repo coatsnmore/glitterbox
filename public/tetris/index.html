@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Glitterbox Tetris</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="tetris-wrapper">
+      <canvas id="board" width="240" height="480" aria-label="Tetris playfield"></canvas>
+      <aside class="sidebar" aria-label="Game information">
+        <h1>✨ Tetris</h1>
+        <p class="instructions">
+          Use the arrow keys or WASD to move pieces. Press <kbd>↑</kbd> or <kbd>W</kbd> to rotate, and
+          <kbd>Space</kbd> to drop.
+        </p>
+        <dl class="stats">
+          <div>
+            <dt>Score</dt>
+            <dd id="score">0</dd>
+          </div>
+          <div>
+            <dt>Lines</dt>
+            <dd id="lines">0</dd>
+          </div>
+          <div>
+            <dt>Level</dt>
+            <dd id="level">1</dd>
+          </div>
+        </dl>
+        <section class="next-piece" aria-label="Next piece preview">
+          <h2>Next</h2>
+          <canvas id="next" width="96" height="96"></canvas>
+        </section>
+        <button id="restart" type="button">Restart</button>
+      </aside>
+    </div>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
